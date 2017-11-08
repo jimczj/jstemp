@@ -1,7 +1,7 @@
 /**
  * @file tokenizer
  * @author jimczj
- * @time 2017-11-07
+ * @date 2017-11-07
  */
 
 const TokenType = {

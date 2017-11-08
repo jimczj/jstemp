@@ -1,7 +1,7 @@
 /**
- * @file tokenizer
+ * @file parser
  * @author jimczj
- * @time 2017-11-08
+ * @date 2017-11-08
  */
 
 const {TokenType, Tokenizer} = require('./tokenizer');
@@ -47,7 +47,6 @@ class Parser {
                 case TokenType.EOF:
                     return this.rootNode;
                 default:
-                    console.log(test);
                     throw Error('解析错误');
             }
         }
