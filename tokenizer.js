@@ -3,7 +3,7 @@ const TokenType = {
     EOF: 'EOF',
     Character: 'Character', // 字符串
     Variable: 'Variable', // 变量
-    ExpresionStatement: 'ExpresionStatement',
+    VariableName: 'VariableName', // 变量名
     IfStatement: 'IfStatement',
     IfCondition: 'IfCondition',
     ElseIfStatement: 'ElseIfStatement',
@@ -63,6 +63,10 @@ class Tokenizer {
                     else {
                         Tokenizer.currentToken += this.template[this.baseoffset++];
                     }
+                    break;
+                case Tokenizer.EscapeState:
+                    this.state = Tokenizer.Character;
+                    Tokenizer.currentToken += this.template[this.baseoffset++];
                     break;
                 case Tokenizer.LeftBraceState:
                     if (this.template[this.baseoffset] === '{') {
@@ -260,11 +264,11 @@ class Tokenizer {
                         || this.template[this.baseoffset] === '\n') {
                         this.baseoffset++;
                         this.state = Tokenizer.BeforeEndVariableState;
-                        return TokenType.Variable;
+                        return TokenType.VariableName;
                     } else if (this.template[this.baseoffset] === '}') {
                         this.baseoffset++;
                         this.state = Tokenizer.RightBraceState;
-                        return TokenType.Variable;
+                        return TokenType.VariableName;
                     }
                     else {
                         Tokenizer.currentToken += this.template[this.baseoffset++];
@@ -325,54 +329,59 @@ Tokenizer.CharState = 'CharState'; // 字符串
 Tokenizer.BeforeVariableState = 'BeforeVariableState'; // 变量
 Tokenizer.BeforeEndVariableState = 'BeforeEndVariableState';
 Tokenizer.VariableState = 'VariableState';
-let token = new Tokenizer(template);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
-console.log(token.nextToken());
-console.log(Tokenizer.currentToken);
+
+module.exports = {
+    TokenType,
+    Tokenizer
+};
+// let token = new Tokenizer(template);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
+// console.log(token.nextToken());
+// console.log(Tokenizer.currentToken);
