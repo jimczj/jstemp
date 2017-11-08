@@ -1,3 +1,8 @@
+/**
+ * @file tokenizer
+ * @author jimczj
+ * @time 2017-11-07
+ */
 
 const TokenType = {
     EOF: 'EOF',
@@ -15,7 +20,6 @@ const TokenType = {
     ForListName: 'ForListName',
     EndForStatement: 'EndForStatement'
 };
-let template = '<p>how to</p>{%for num : list %}let say{{num.num}}{%endfor%}{%if obj%}{{obj.test}}{%else%} 你是傻逼{%endif%}';
 
 class Tokenizer {
 
@@ -334,54 +338,4 @@ module.exports = {
     TokenType,
     Tokenizer
 };
-// let token = new Tokenizer(template);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
-// console.log(token.nextToken());
-// console.log(Tokenizer.currentToken);
+

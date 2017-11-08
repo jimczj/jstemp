@@ -1,5 +1,10 @@
-const {TokenType, Tokenizer} = require('./tokenizer');
+/**
+ * @file tokenizer
+ * @author jimczj
+ * @time 2017-11-08
+ */
 
+const {TokenType, Tokenizer} = require('./tokenizer');
 let template = '<p>how to</p>{%for num : list %}let say{{num.num}}{%endfor%}{%if obj%}{{obj.test}}{%else%} 你是傻逼{%endif%}';
 
 class Parser {
@@ -141,7 +146,5 @@ class Parser {
     }
 }
 
-let parser = new Parser(template);
-console.log(parser.parse());
 
 module.exports = Parser;
