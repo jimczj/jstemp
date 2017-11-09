@@ -4,7 +4,8 @@
  * @created 2017-11-08
  */
 
-const {TokenType, Tokenizer} = require('./tokenizer');
+const Tokenizer = require('./tokenizer');
+const TokenType = require('./tokenType');
 
 class Parser {
 

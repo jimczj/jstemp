@@ -4,22 +4,7 @@
  * @created 2017-11-07
  */
 
-const TokenType = {
-    EOF: 'EOF',
-    Character: 'Character', // 字符串
-    Variable: 'Variable', // 变量
-    VariableName: 'VariableName', // 变量名
-    IfStatement: 'IfStatement',
-    IfCondition: 'IfCondition',
-    ElseIfStatement: 'ElseIfStatement',
-    ElseStatement: 'ElseStatement',
-    EndTag: 'EndTag',
-    EndIfStatement: 'EndIfStatement',
-    ForStatement: 'ForStatement',
-    ForItemName: 'ForItemName',
-    ForListName: 'ForListName',
-    EndForStatement: 'EndForStatement'
-};
+const TokenType = require('./tokenType');
 
 class Tokenizer {
 
@@ -334,8 +319,6 @@ Tokenizer.BeforeVariableState = 'BeforeVariableState'; // 变量
 Tokenizer.BeforeEndVariableState = 'BeforeEndVariableState';
 Tokenizer.VariableState = 'VariableState';
 
-module.exports = {
-    TokenType,
-    Tokenizer
-};
+module.exports = Tokenizer;
+
 

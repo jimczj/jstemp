@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/jimczj/jstemp/issues"
   },
-  "homepage": "https://github.com/jimczj/jstemp#readme"
+  "homepage": "https://github.com/jimczj/jstemp#readme",
+  "dependencies": {
+    "mocha": "^4.0.1"
+  }
 }

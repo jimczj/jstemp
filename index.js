@@ -1,3 +1,2 @@
-const render = require('./render');
 
-module.exports = {render};
+module.exports = require('./src/render').render;

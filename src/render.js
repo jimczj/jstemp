@@ -4,7 +4,7 @@
  * @created 2017-11-09
  */
 const Parser = require('./parser');
-const TokenType = require('./tokenizer').TokenType;
+const TokenType = require('./tokenType');
 
 function render(template, env) {
     let parser = new Parser(template);
