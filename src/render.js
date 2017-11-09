@@ -92,4 +92,4 @@ function calIfStatement(env, node) {
     return result;
 }
 
-module.exports = render;
+module.exports = {render};

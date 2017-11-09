@@ -11,38 +11,20 @@ npm install jstemp --save
 ```
 var jstemp = require('jstemp');
 // 渲染变量
-jstemp('{{value}}', {value: 'hello world'});// hello world
+jstemp.render('{{value}}', {value: 'hello world'});// hello world
 
 
 
 // 渲染if 表达式,目前if 条件表达式不支持复杂的表达式，如>=,||,&&,后期将加强
-jstemp('{% if value1 %}hello{% elseif value %}world{% else %}byebye{% endif %}', {value: 'hello world'});// world
+jstemp.render('{% if value1 %}hello{% elseif value %}world{% else %}byebye{% endif %}', {value: 'hello world'});// world
 
 // 渲染列表
-jstemp('{%for item : list %}{{item}}{%endfor%}', {list:[1, 2, 3]});// 123
+jstemp.render('{%for item : list %}{{item}}{%endfor%}', {list:[1, 2, 3]});// 123
 ```
 # License
 MIT License
 
 Copyright (c) 2017 jimczj
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 
 

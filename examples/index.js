@@ -4,7 +4,7 @@
  * @created 2017-11-09
  */
 
-const render = require('../index');
+const jstemp = require('jstemp');
 
 let env = {
     obj: {test: 'jimczj'},
@@ -32,4 +32,4 @@ let template = `
 {%endif%}
 `;
 
-console.log(render(template, env));
+console.log(jstemp.render(template, env));
