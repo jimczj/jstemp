@@ -9,7 +9,6 @@ const TokenType = require('./tokenType');
 function render(template, env) {
     let parser = new Parser(template);
     let rootNode = parser.parse();
-    console.log(rootNode);
     let html = '';
     let node;
     for (node of rootNode.childNodes) {
@@ -56,7 +55,7 @@ function calForStatement(env, node) {
     let name = node.itemName.split('.')[0];
     for (let item of env[node.listName]) {
         obj[name] = item;
-        let statementEnv = Object.assign(obj, env);
+        let statementEnv = Object.assign(env, obj);
         for (let childNode of node.childNodes) {
             result += calStatement(statementEnv, childNode);
         }
