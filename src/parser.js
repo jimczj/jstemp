@@ -1,11 +1,10 @@
 /**
  * @file parser
  * @author jimczj
- * @date 2017-11-08
+ * @created 2017-11-08
  */
 
 const {TokenType, Tokenizer} = require('./tokenizer');
-let template = '<p>how to</p>{%for num : list %}let say{{num.num}}{%endfor%}{%if obj%}{{obj.test}}{%else%} 你是傻逼{%endif%}';
 
 class Parser {
 
@@ -144,6 +143,5 @@ class Parser {
         return node;
     }
 }
-
 
 module.exports = Parser;
