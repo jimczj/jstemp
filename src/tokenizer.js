@@ -299,25 +299,25 @@ class Tokenizer {
 
 Tokenizer.currentToken = '';
 
-Tokenizer.InitState = 'InitState'; // 初始
-Tokenizer.LeftBraceState = 'LeftBraceState'; // {
-Tokenizer.RightBraceState = 'RightBraceState'; // }
-Tokenizer.BeforeStatementState = 'BeforeStatementState';
-Tokenizer.StatementState = 'StatementState';
-Tokenizer.BeforeIfConditionState = 'BeforeIfConditionState';
-Tokenizer.IfConditionState = 'IfConditionState';
-Tokenizer.BeforeForItemNameState = 'BeforeForItemNameState';
-Tokenizer.ForItemNameState = 'ForItemNameState';
-Tokenizer.BeforeColonState = 'BeforeColonState';
-Tokenizer.BeforeForListNameState = 'BeforeForListNameState';
-Tokenizer.ForListNameState = 'ForListNameState';
-Tokenizer.BeforeEndStatementState = 'BeforeEndStatementState';
-Tokenizer.PercentState = 'PercentState'; // %
-Tokenizer.EscapeState = 'EscapeState'; // 转义
-Tokenizer.CharState = 'CharState'; // 字符串
-Tokenizer.BeforeVariableState = 'BeforeVariableState'; // 变量
-Tokenizer.BeforeEndVariableState = 'BeforeEndVariableState';
-Tokenizer.VariableState = 'VariableState';
+Tokenizer.InitState = 0; // 初始
+Tokenizer.LeftBraceState = 1; // {
+Tokenizer.RightBraceState = 2; // }
+Tokenizer.BeforeStatementState = 3;
+Tokenizer.StatementState = 4;
+Tokenizer.BeforeIfConditionState = 5;
+Tokenizer.IfConditionState = 6;
+Tokenizer.BeforeForItemNameState = 7;
+Tokenizer.ForItemNameState = 8;
+Tokenizer.BeforeColonState = 9;
+Tokenizer.BeforeForListNameState = 10;
+Tokenizer.ForListNameState = 11;
+Tokenizer.BeforeEndStatementState = 12;
+Tokenizer.PercentState = 13; // %
+Tokenizer.EscapeState = 14; // 转义
+Tokenizer.CharState = 15; // 字符串
+Tokenizer.BeforeVariableState = 16; // 变量
+Tokenizer.BeforeEndVariableState = 17;
+Tokenizer.VariableState = 18;
 
 module.exports = Tokenizer;
 
