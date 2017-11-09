@@ -4,7 +4,7 @@
  * @created 2017-11-09
  */
 const Parser = require('./parser');
-const TokenType = require('./tokenType');
+const NodeType = require('./nodeType');
 
 function render(template, env) {
     let parser = new Parser(template);
@@ -20,16 +20,16 @@ function render(template, env) {
 function calStatement(env, node) {
     let html = '';
     switch (node.type) {
-        case TokenType.Character:
+        case NodeType.Character:
             html += node.value;
             break;
-        case TokenType.Variable:
+        case NodeType.Variable:
             html += calVariable(env, node.valueName);
             break;
-        case TokenType.IfStatement:
+        case NodeType.IfStatement:
             html += calIfStatement(env, node);
             break;
-        case TokenType.ForStatement:
+        case NodeType.ForStatement:
             html += calForStatement(env, node);
             break;
         default:

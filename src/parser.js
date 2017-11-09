@@ -5,6 +5,7 @@
  */
 
 const Tokenizer = require('./tokenizer');
+const NodeType = require('./nodeType');
 const TokenType = require('./tokenType');
 
 class Parser {
@@ -22,7 +23,7 @@ class Parser {
             switch (this.tokenizer.nextToken()) {
                 case TokenType.Character:
                     node.childNodes.push({
-                        type: TokenType.Character,
+                        type: NodeType.Character,
                         value: Tokenizer.currentToken
                     });
                     break;
@@ -56,7 +57,7 @@ class Parser {
             throw Error('未输入变量名');
         }
         const node = {
-            type: TokenType.Variable,
+            type: NodeType.Variable,
             valueName: Tokenizer.currentToken
         };
         if (this.tokenizer.nextToken() !== TokenType.EndTag) {
@@ -70,7 +71,7 @@ class Parser {
             throw Error('未输入if 条件');
         }
         const node = {
-            type: TokenType.IfStatement,
+            type: NodeType.IfStatement,
             condition: Tokenizer.currentToken,
             elseifNodes: [],
             childNodes: []
@@ -105,7 +106,7 @@ class Parser {
             throw Error('未输入if 条件');
         }
         const node = {
-            type: TokenType.IfStatement,
+            type: NodeType.ElseIfStatement,
             condition: condition || Tokenizer.currentToken,
             childNodes: []
         };
@@ -121,7 +122,7 @@ class Parser {
             throw Error('for 表达式有误');
         }
         const node = {
-            type: TokenType.ForStatement,
+            type: NodeType.ForStatement,
             itemName: Tokenizer.currentToken,
             listName: '',
             childNodes: []

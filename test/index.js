@@ -1,5 +1,5 @@
 const assert = require('assert');
-const render = require('../index');
+const render = require('../index').render;
 
 let env = {
     obj: {value: 'world'},
