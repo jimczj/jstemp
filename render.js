@@ -7,7 +7,7 @@ const Parser = require('./parser');
 const TokenType = require('./tokenizer').TokenType;
 
 let env = {
-    obj: '',
+    obj: {test: 'jimczj'},
     list: [
         {num: 1},
         {num: 2},
@@ -21,6 +21,11 @@ let template = `
 {%endfor%}
 {%if obj%}
     {{obj.test}}
+    {%for num : list %}
+        {% if num.num %}
+            {{num.num}}
+        {% endif %}
+    {%endfor%}
 {%else%}
     你是傻逼
 {%endif%}
