@@ -9,6 +9,7 @@ const TokenType = require('./tokenType');
 function render(template, env) {
     let parser = new Parser(template);
     let rootNode = parser.parse();
+    console.log(rootNode);
     let html = '';
     let node;
     for (node of rootNode.childNodes) {
@@ -92,4 +93,4 @@ function calIfStatement(env, node) {
     return result;
 }
 
-module.exports = {render};
+module.exports = render;

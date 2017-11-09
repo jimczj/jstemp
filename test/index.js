@@ -12,7 +12,6 @@ let env = {
 
 describe('render(template, env)', () => {
     it('should render variable', () => {
-        assert.equal('<p>hello world', render('<p>hello {{ obj.value }}', env));
+        assert.equal('<p>hello world</p>', render('<p>hello {{ obj.value }}</p>', env));
     });
 });
-

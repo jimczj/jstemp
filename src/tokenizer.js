@@ -24,7 +24,7 @@ class Tokenizer {
 
     nextToken() {
         Tokenizer.currentToken = '';
-        while (this.baseoffset <= this.template.length) {
+        while (this.baseoffset < this.template.length) {
             switch (this.state) {
                 case Tokenizer.InitState:
                     if (this.template[this.baseoffset] === '{') {
@@ -267,9 +267,17 @@ class Tokenizer {
                     console.log(this.state, this.template[this.baseoffset]);
                     throw Error('错误的语法');
             }
-
         }
-        return TokenType.EOF;
+        if (this.state === Tokenizer.InitState) {
+            return TokenType.EOF;
+        }
+        else if (this.state === Tokenizer.CharState) {
+            this.state = Tokenizer.InitState;
+            return TokenType.Character;
+        }
+        else {
+           throw Error('错误的语法');
+        }
     }
 }
 
@@ -296,5 +304,3 @@ Tokenizer.BeforeEndVariableState = 17;
 Tokenizer.VariableState = 18;
 
 module.exports = Tokenizer;
-
-

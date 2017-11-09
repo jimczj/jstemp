@@ -1,2 +1,2 @@
 
-module.exports = require('./src/render').render;
+module.exports = require('./src/render');

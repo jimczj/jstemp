@@ -20,6 +20,7 @@ class Parser {
         node = node || this.rootNode;
         while (true) {
             let test = this.tokenizer.nextToken();
+            console.log(test);
             switch (test) {
                 case TokenType.Character:
                     node.childNodes.push({
