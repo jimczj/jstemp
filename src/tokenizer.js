@@ -5,6 +5,7 @@
  */
 
 const TokenType = require('./tokenType');
+const helper = require('./helper');
 
 class Tokenizer {
 
@@ -73,9 +74,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.BeforeStatementState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                     }
                     else if (('a' <= this.template[this.baseoffset] && this.template[this.baseoffset] <= 'z')
@@ -83,7 +82,6 @@ class Tokenizer {
                         this.state = Tokenizer.StatementState;
                     }
                     else {
-                        console.log(this.state, this.template[this.baseoffset]);
                         throw Error('变量名不合法');
                     }
                     break;
@@ -123,9 +121,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.BeforeIfConditionState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                     }
                     else {
@@ -133,9 +129,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.IfConditionState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.state = Tokenizer.BeforeEndStatementState;
                         this.baseoffset++;
                         return TokenType.IfCondition;
@@ -150,9 +144,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.BeforeEndStatementState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                     }
                     else if (this.template[this.baseoffset] === '%') {
@@ -172,9 +164,7 @@ class Tokenizer {
                     throw Error('错误的语法');
                     break;
                 case Tokenizer.BeforeForItemNameState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                     }
                     else {
@@ -182,9 +172,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.ForItemNameState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                         this.state = Tokenizer.BeforeColonState;
                         return TokenType.ForItemName;
@@ -194,9 +182,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.BeforeColonState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                     }
                     else if (this.template[this.baseoffset] === ':') {
@@ -208,9 +194,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.BeforeForListNameState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                     }
                     else if (('a' <= this.template[this.baseoffset] && this.template[this.baseoffset] <= 'z')
@@ -222,9 +206,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.ForListNameState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                         this.state = Tokenizer.BeforeEndStatementState;
                         return TokenType.ForListName;
@@ -238,9 +220,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.BeforeVariableState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                     }
                     else {
@@ -248,9 +228,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.VariableState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                         this.state = Tokenizer.BeforeEndVariableState;
                         return TokenType.VariableName;
@@ -264,9 +242,7 @@ class Tokenizer {
                     }
                     break;
                 case Tokenizer.BeforeEndVariableState:
-                    if (this.template[this.baseoffset] === ' '
-                        || this.template[this.baseoffset] === '\t'
-                        || this.template[this.baseoffset] === '\n') {
+                    if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
                     }
                     else if (this.template[this.baseoffset] === '}') {
