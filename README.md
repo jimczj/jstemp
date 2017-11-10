@@ -21,6 +21,10 @@ jstemp.render('{% if value1 %}hello{% elseif value %}world{% else %}byebye{% end
 // 渲染列表
 jstemp.render('{%for item : list %}{{item}}{%endfor%}', {list:[1, 2, 3]});// 123
 ```
+# 开发笔记
+
+[不用正则表达式，用javascript从零写一个模板引擎(一)](https://github.com/jimczj/blog/issues/23)
+
 # License
 MIT License
 
