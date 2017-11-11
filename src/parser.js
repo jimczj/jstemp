@@ -47,28 +47,28 @@ class Parser {
                 case TokenType.EOF:
                     return this.rootNode;
                 default:
-                    throw Error('解析错误');
+                    throw new Error('解析错误');
             }
         }
     }
 
     parseVariable() {
         if (this.tokenizer.nextToken() !== TokenType.VariableName) {
-            throw Error('未输入变量名');
+            throw new Error('未输入变量名');
         }
         const node = {
             type: NodeType.Variable,
             valueName: Tokenizer.currentToken
         };
         if (this.tokenizer.nextToken() !== TokenType.EndTag) {
-            throw Error('变量标签未闭合');
+            throw new Error('变量标签未闭合');
         }
         return node;
     }
 
     parseIfStatement() {
         if (this.tokenizer.nextToken() !== TokenType.IfCondition) {
-            throw Error('未输入if 条件');
+            throw new Error('未输入if 条件');
         }
         const node = {
             type: NodeType.IfStatement,
@@ -77,7 +77,7 @@ class Parser {
             childNodes: []
         };
         if (this.tokenizer.nextToken() !== TokenType.EndTag) {
-            throw Error('if标签未闭合');
+            throw new Error('if标签未闭合');
         }
         let token = this.parse(node);
         while (token !== TokenType.EndIfStatement) {
@@ -92,18 +92,18 @@ class Parser {
                 node.elseifNodes.push(elseNode);
             }
             else {
-                throw Error('语法错误');
+                throw new Error('语法错误');
             }
         }
         if (this.tokenizer.nextToken() !== TokenType.EndTag) {
-            throw Error('endif 标签没有闭合');
+            throw new Error('endif 标签没有闭合');
         }
         return node;
     }
 
     parseElseifStatement(condition) {
         if (!condition && this.tokenizer.nextToken() !== TokenType.IfCondition) {
-            throw Error('未输入if 条件');
+            throw new Error('未输入if 条件');
         }
         const node = {
             type: NodeType.ElseIfStatement,
@@ -111,7 +111,7 @@ class Parser {
             childNodes: []
         };
         if (this.tokenizer.nextToken() !== TokenType.EndTag) {
-            throw Error('elseif标签未闭合');
+            throw new Error('elseif标签未闭合');
         }
 
         return node;
@@ -119,7 +119,7 @@ class Parser {
 
     parseForStatement() {
         if (this.tokenizer.nextToken() !== TokenType.ForItemName) {
-            throw Error('for 表达式有误');
+            throw new Error('for 表达式有误');
         }
         const node = {
             type: NodeType.ForStatement,
@@ -128,18 +128,18 @@ class Parser {
             childNodes: []
         };
         if (this.tokenizer.nextToken() !== TokenType.ForListName) {
-            throw Error('for 表达式有误');
+            throw new Error('for 表达式有误');
         }
         node.listName = Tokenizer.currentToken;
         if (this.tokenizer.nextToken() !== TokenType.EndTag) {
-            throw Error('for 标签没闭合');
+            throw new Error('for 标签没闭合');
         }
         let token = this.parse(node);
         if (token !== TokenType.EndForStatement) {
-            throw Error('没有添加endfor 标签');
+            throw new Error('没有添加endfor 标签');
         }
         if (this.tokenizer.nextToken() !== TokenType.EndTag) {
-            throw Error('endfor 标签没有闭合');
+            throw new Error('endfor 标签没有闭合');
         }
         return node;
     }

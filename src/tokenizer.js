@@ -82,7 +82,7 @@ class Tokenizer {
                         this.state = Tokenizer.StatementState;
                     }
                     else {
-                        throw Error('变量名不合法');
+                        throw new Error('变量名不合法');
                     }
                     break;
                 case Tokenizer.StatementState:
@@ -116,10 +116,7 @@ class Tokenizer {
                         this.state = Tokenizer.BeforeEndStatementState;
                         return TokenType.EndForStatement;
                     }
-                    else {
-                        throw Error('未知表达式');
-                    }
-                    break;
+                    throw new Error('未知表达式');
                 case Tokenizer.BeforeIfConditionState:
                     if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
@@ -139,9 +136,7 @@ class Tokenizer {
                         this.state = Tokenizer.PercentState;
                         return TokenType.IfCondition;
                     }
-                    else {
-                        Tokenizer.currentToken += this.template[this.baseoffset++];
-                    }
+                    Tokenizer.currentToken += this.template[this.baseoffset++];
                     break;
                 case Tokenizer.BeforeEndStatementState:
                     if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
@@ -152,7 +147,7 @@ class Tokenizer {
                         this.baseoffset++;
                     }
                     else {
-                        throw Error('错误的语法');
+                        throw new Error('错误的语法');
                     }
                     break;
                 case Tokenizer.PercentState:
@@ -161,8 +156,7 @@ class Tokenizer {
                         this.state = Tokenizer.InitState;
                         return TokenType.EndTag;
                     }
-                    throw Error('错误的语法');
-                    break;
+                    throw new Error('错误的语法');
                 case Tokenizer.BeforeForItemNameState:
                     if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
                         this.baseoffset++;
@@ -177,9 +171,7 @@ class Tokenizer {
                         this.state = Tokenizer.BeforeColonState;
                         return TokenType.ForItemName;
                     }
-                    else {
-                        Tokenizer.currentToken += this.template[this.baseoffset++];
-                    }
+                    Tokenizer.currentToken += this.template[this.baseoffset++];
                     break;
                 case Tokenizer.BeforeColonState:
                     if (helper.isSpaceOrNewlineOrTab(this.template[this.baseoffset])) {
@@ -190,7 +182,7 @@ class Tokenizer {
                         this.state = Tokenizer.BeforeForListNameState;
                     }
                     else {
-                        throw Error('错误的语法');
+                        throw new Error('错误的语法');
                     }
                     break;
                 case Tokenizer.BeforeForListNameState:
@@ -202,7 +194,7 @@ class Tokenizer {
                         this.state = Tokenizer.ForListNameState;
                     }
                     else {
-                        throw Error('错误的语法');
+                        throw new Error('错误的语法');
                     }
                     break;
                 case Tokenizer.ForListNameState:
@@ -216,7 +208,7 @@ class Tokenizer {
                         Tokenizer.currentToken += this.template[this.baseoffset++];
                     }
                     else {
-                        throw Error('错误的语法');
+                        throw new Error('错误的语法');
                     }
                     break;
                 case Tokenizer.BeforeVariableState:
@@ -232,7 +224,8 @@ class Tokenizer {
                         this.baseoffset++;
                         this.state = Tokenizer.BeforeEndVariableState;
                         return TokenType.VariableName;
-                    } else if (this.template[this.baseoffset] === '}') {
+                    }
+                    else if (this.template[this.baseoffset] === '}') {
                         this.baseoffset++;
                         this.state = Tokenizer.RightBraceState;
                         return TokenType.VariableName;
@@ -250,7 +243,7 @@ class Tokenizer {
                         this.baseoffset++;
                     }
                     else {
-                        throw Error('标签没有闭合');
+                        throw new Error('标签没有闭合');
                     }
                     break;
                 case Tokenizer.RightBraceState:
@@ -259,13 +252,9 @@ class Tokenizer {
                         this.state = Tokenizer.InitState;
                         return TokenType.EndTag;
                     }
-                    else {
-                        throw Error('标签没有闭合');
-                    }
-                    break;
+                    throw new Error('标签没有闭合');
                 default:
-                    console.log(this.state, this.template[this.baseoffset]);
-                    throw Error('错误的语法');
+                    throw new Error('错误的语法');
             }
         }
         if (this.state === Tokenizer.InitState) {
@@ -275,9 +264,7 @@ class Tokenizer {
             this.state = Tokenizer.InitState;
             return TokenType.Character;
         }
-        else {
-           throw Error('错误的语法');
-        }
+        throw new Error('错误的语法');
     }
 }
 

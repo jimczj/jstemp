@@ -33,7 +33,7 @@ function calStatement(env, node) {
             html += calForStatement(env, node);
             break;
         default:
-            throw Error('未知node type');
+            throw new Error('未知node type');
     }
     return html;
 }
@@ -65,9 +65,9 @@ function calForStatement(env, node) {
 
 function calConditionStatement(env, condition) {
     if (typeof condition === 'string') {
-        return calVariable(env, condition) ? true : false;
+        return !!calVariable(env, condition);
     }
-    return condition ? true : false;
+    return !!condition;
 }
 
 function calIfStatement(env, node) {
